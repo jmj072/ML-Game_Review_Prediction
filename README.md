@@ -11,8 +11,9 @@
   
 	<img src="https://user-images.githubusercontent.com/77204538/175938439-c3c4fae2-2788-4908-860c-fae1ee49e4f5.png" height=300>
 
+<br>
 
-
+## 프로젝트 목표
 
 > ☑ 따라서, 게임 판매에 중요한 유저들의 평가를 예측하는 모델을 생성하여,  
 > 게임 개발자들에게 어떤 게임이 판매량에 영향을 주는지 인사이트를 제공하여 도움을 주고자 한다.
@@ -630,28 +631,44 @@ KNN, Gradient Boostiong, AdaBoosting, XGBoost, LightGBM, 총 11개의 모델의 
 > ✅ [웹 API 링크](https://game-review-prediction.herokuapp.com/)
 
 - Home 화면
+<<<<<<< HEAD
   - 네이게이션바와 버튼을 클릭하면 해당 링크로 이동
   - API : 예측 API를 이동할 수 있는 변수입력 페이지로 이동
   - Dashboard : speamspy에서 수집한 데이터를 기반으로 한 대시보드 페이지로 이동
   - Steamspy : 데이터를 수집한 steamspy 홈페이지로 이동
 
 	<img src="https://user-images.githubusercontent.com/77204538/180365688-c1342048-c9d8-4d51-8a3b-4aeebc30f187.png">
+=======
+
+	<img src="https://user-images.githubusercontent.com/77204538/175963564-2f06d0fd-4afe-4571-9a8b-dd4884c0b684.png" height=400>
+>>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
 - 변수 입력
+<<<<<<< HEAD
   - 네비게이션바의 **API**, **예측하기 버튼**을 클릭하면 이동
 	<img src="https://user-images.githubusercontent.com/77204538/180365689-846a9842-1052-4d42-bf17-1c55c0328b76.png" height=500>
+=======
+
+	<img src="https://user-images.githubusercontent.com/77204538/175963562-14712e5a-4e3b-4d25-8b3c-370fb2d23414.png" height=400>
+>>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 	
 <br>
 
 - 예측 결과 출력
+<<<<<<< HEAD
   - 변수입력 페이지에서 **predict! 버튼**을 클릭하면 이동
 	<img src="https://user-images.githubusercontent.com/77204538/180365691-b8e6c01b-2ef1-4de2-9a0b-b512379ca880.png" height=400>
+=======
+
+	<img src="https://user-images.githubusercontent.com/77204538/175963549-34b18018-5faa-41d7-9354-1d10cf6c07e3.png" height=400>
+>>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
 - DashBoard
+<<<<<<< HEAD
   - 네비게이션바의 **Dashboard**, **이동하기 버튼**을 클릭하면 이동
 
 	<img src="https://user-images.githubusercontent.com/77204538/180366216-f4f96d5f-4c07-4df4-9108-4e70e2cc0739.png">
@@ -659,12 +676,26 @@ KNN, Gradient Boostiong, AdaBoosting, XGBoost, LightGBM, 총 11개의 모델의 
 	<img src="https://user-images.githubusercontent.com/77204538/180365681-e4b0e953-01a5-4038-9f67-6b8d50baff10.png">
 
 	<img src="https://user-images.githubusercontent.com/77204538/180365685-a1602381-8e81-4f46-ad9d-c137773dabc5.png">
+=======
+
+	<img src="https://user-images.githubusercontent.com/77204538/175963958-49550e12-c01d-4283-b29c-0275d5ed5c67.png" height=400>
+	<img src="https://user-images.githubusercontent.com/77204538/175963569-ae1b489c-14d7-455a-bfca-e7a02eb6adec.png" height=400>
+>>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
 ## 5. 결론
+<<<<<<< HEAD
  
 > **게임의 가격대**와 **출시 후 할인**여부, **지원 언어의 수**는 유저 리뷰 평가에 영향을 준다.
+=======
+
+> 게임이 나중에 할인하는지, 인디 게임인지 상관없이, 
+> **초기 판매 가격과 게임의 장르, 한국어 지원 여부**가 긍정적인 리뷰에 영향을 준다.
+<br>
+
+> 웹 API를 이용하여 게임이 어떤 평가를 받을 지 대략적으로 예상할 수 있다.
+>>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
