@@ -128,14 +128,16 @@
 
 <br>
 
-### Data Cleaning
+---
+
+### 1.1 Data Cleaning
 - DB에 저장된 `steamspy_details` 와 `steamspy_otherdetails`를 load하여 아래와 같은 전처리를 진행함
 
 <br>
 
-#### **1. 결측치 처리**
+#### 1.1.1 결측치 처리
 
-- **1.1 Steam 유저 리뷰 평가점수 / 메타 스코어 결측치 처리**
+- **Steam 유저 리뷰 평가점수 / 메타 스코어 결측치 처리**
    - 전체 4만 여개의 데이터 중, 2만 ~ 3만개의 결측치가 발견됨
    - 게임 평론가 평가(메타 스코어)보단 유저 평가가 개발자들에게 유용할 것으로 보이므로, `steam_userscore`의 결측치만 처리하기로 함
    - 긍정적인 리뷰 평가 갯수(`positive_review`), 부정적인 리뷰 평가 갯수(`negative_review`)를 이용하여 계산한다   
@@ -144,7 +146,7 @@
 
 <br>  
 
-- **1.2 결측치 제외**
+- **결측치 제외**
   - `steam_userscore` 결측치 처리 이후, 여전히 결측치로 남아있는 데이터는 제외하였음
   - **게임 가격, 출시연도, 게임 장르와 언어 지원**도 시각화 및 모델링에 중요한 정보이므로, 해당 정보가 없는 경우는 제외하였음
   - **개발사, 유통사** 데이터가 없는 경우는 소량이고 시각화/모델링에 중요한 정보는 아니므로 제외하였음
@@ -152,9 +154,9 @@
 
 <br>
 
-#### **2. 특성 생성**
+#### 1.1.2 특성 생성
 
-- 2.1 `genre`에서 파생 특성 생성
+- `genre`에서 파생 특성 생성
 	- `Genre` 특성
     	- `genre` 특성을 살펴보았을때, 여러개의 장르로 분류된 게임들이 존재함
     	- ex) MazM: The Phantom of the Opera : Adventure, RPG, Simulation..
@@ -317,7 +319,7 @@
 
 <br>
 
-- 2.2 `Tags`에서 파생 특성 생성
+- `Tags`에서 파생 특성 생성
   - `Multiplayer`, `Co-op`, `OpenWorld`, `Horror`, `Violent`, `Sexual` 특성 생성
     - `Tags`는 게임 내 콘텐츠 요소나 게임의 배경을 나타내는 특성임
     - 따라서 이 특성에서 게임 내 콘텐츠 요소 특성을 생성하여, 콘텐츠에 따라 리뷰 평가가 달리지는지 살펴보고자 함
@@ -351,7 +353,7 @@
 
 <br>
 
-- 2.3 지원 언어 파생 특성 생성
+- 지원 언어 파생 특성 생성
   - 지원하는 총 언어 수
     - 다양한 국가의 게이머가 게임을 즐기게 하기 위해서, 그 국가의 언어를 지원하는 것이 유저 리뷰 평가에 영향을 줄 수 있음. 따라서 관련 특성을 생성함
 		<details>
@@ -386,7 +388,7 @@
 <br>
 
 
-- 2.3 그룹 특성 생성
+- 그룹 특성 생성
 	- 출시 가격에 대한 그룹화
     	- 기존 센트 단위로 되어있는 가격을 달러 단위로 변환
     	- 무료게임을 제외하고, `pd.qcut`을 이용하여 데이터수가 동일하게 4개의 그룹으로 나누었음
@@ -485,7 +487,7 @@
 
 <br>
 
-#### **3. DB 저장**
+#### 1.1.3 DB 저장
 - DB 저장 전, 중간 저장 형태로 먼저 `steamspy_dataset.csv` 형태로 저장함
 - 이후 `steamspy_dataset` Table 생성 후, 데이터 저장하였음
 - DB 스키마
@@ -494,7 +496,9 @@
 
 <br>
 
-### 최종 데이터 구성
+---
+
+### 1.2 최종 데이터셋 구성
 
 - **Target**
 	- `steam_userscore_group` 
@@ -631,44 +635,28 @@ KNN, Gradient Boostiong, AdaBoosting, XGBoost, LightGBM, 총 11개의 모델의 
 > ✅ [웹 API 링크](https://game-review-prediction.herokuapp.com/)
 
 - Home 화면
-<<<<<<< HEAD
   - 네이게이션바와 버튼을 클릭하면 해당 링크로 이동
   - API : 예측 API를 이동할 수 있는 변수입력 페이지로 이동
   - Dashboard : speamspy에서 수집한 데이터를 기반으로 한 대시보드 페이지로 이동
   - Steamspy : 데이터를 수집한 steamspy 홈페이지로 이동
 
 	<img src="https://user-images.githubusercontent.com/77204538/180365688-c1342048-c9d8-4d51-8a3b-4aeebc30f187.png">
-=======
-
-	<img src="https://user-images.githubusercontent.com/77204538/175963564-2f06d0fd-4afe-4571-9a8b-dd4884c0b684.png" height=400>
->>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
 - 변수 입력
-<<<<<<< HEAD
   - 네비게이션바의 **API**, **예측하기 버튼**을 클릭하면 이동
 	<img src="https://user-images.githubusercontent.com/77204538/180365689-846a9842-1052-4d42-bf17-1c55c0328b76.png" height=500>
-=======
-
-	<img src="https://user-images.githubusercontent.com/77204538/175963562-14712e5a-4e3b-4d25-8b3c-370fb2d23414.png" height=400>
->>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 	
 <br>
 
 - 예측 결과 출력
-<<<<<<< HEAD
   - 변수입력 페이지에서 **predict! 버튼**을 클릭하면 이동
 	<img src="https://user-images.githubusercontent.com/77204538/180365691-b8e6c01b-2ef1-4de2-9a0b-b512379ca880.png" height=400>
-=======
-
-	<img src="https://user-images.githubusercontent.com/77204538/175963549-34b18018-5faa-41d7-9354-1d10cf6c07e3.png" height=400>
->>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
 - DashBoard
-<<<<<<< HEAD
   - 네비게이션바의 **Dashboard**, **이동하기 버튼**을 클릭하면 이동
 
 	<img src="https://user-images.githubusercontent.com/77204538/180366216-f4f96d5f-4c07-4df4-9108-4e70e2cc0739.png">
@@ -676,26 +664,12 @@ KNN, Gradient Boostiong, AdaBoosting, XGBoost, LightGBM, 총 11개의 모델의 
 	<img src="https://user-images.githubusercontent.com/77204538/180365681-e4b0e953-01a5-4038-9f67-6b8d50baff10.png">
 
 	<img src="https://user-images.githubusercontent.com/77204538/180365685-a1602381-8e81-4f46-ad9d-c137773dabc5.png">
-=======
-
-	<img src="https://user-images.githubusercontent.com/77204538/175963958-49550e12-c01d-4283-b29c-0275d5ed5c67.png" height=400>
-	<img src="https://user-images.githubusercontent.com/77204538/175963569-ae1b489c-14d7-455a-bfca-e7a02eb6adec.png" height=400>
->>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
 ## 5. 결론
-<<<<<<< HEAD
  
 > **게임의 가격대**와 **출시 후 할인**여부, **지원 언어의 수**는 유저 리뷰 평가에 영향을 준다.
-=======
-
-> 게임이 나중에 할인하는지, 인디 게임인지 상관없이, 
-> **초기 판매 가격과 게임의 장르, 한국어 지원 여부**가 긍정적인 리뷰에 영향을 준다.
-<br>
-
-> 웹 API를 이용하여 게임이 어떤 평가를 받을 지 대략적으로 예상할 수 있다.
->>>>>>> b6620f41fa49b1863ae1960aabc79dd0f02f0c5c
 
 <br>
 
