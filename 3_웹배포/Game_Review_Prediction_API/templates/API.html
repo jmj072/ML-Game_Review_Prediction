@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  </head>
+    <body>
+        {% include "navbar.html" %}
+        <br>
+        <br>
+        <center>
+        <h1> 게임 리뷰 평가 예측하기 </h1><br>
+        
+        <form method="POST", action="{{url_for('predict')}}">
+        <font size="5">변수 입력하기 </font><br><br>
+            <select name="Genre">
+                <option value="">===게임 장르를 선택하세요.===</option>
+                <option value="0">Action</option>
+                <option value="1">Adventure</option>
+                <option value="2">Casual</option>
+                <option value="3">Simulation</option>
+                <option value="4">Strategy</option>
+                <option value="5">RPG</option>
+                <option value="6">Racing</option>
+                <option value="7">Sports</option>
+            </select>
+            <br><br><br>
+
+            <select name="Indie">
+                <option value="">===인디게임 여부를 선택하세요.===</option>
+                <option value="0">인디게임이 아닙니다.</option>
+                <option value="1">인디게임 입니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="Multiplayer">
+                <option value="">===멀티 플레이 게임인지 선택하세요.===</option>
+                <option value="0">싱글 플레이 게임입니다.</option>
+                <option value="1">멀티 플레이 게임입니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="Co-op">
+                <option value="">===코옵 플레이를 지원하는지 선택하세요.===</option>
+                <option value="0">코옵 플레이를 지원하지 않습니다.</option>
+                <option value="1">코옵 플레이를 지원합니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="OpenWorld">
+                <option value="">===오픈월드 게임인지 선택하세요.===</option>
+                <option value="0">오픈월드 게임이 아닙니다.</option>
+                <option value="1">오픈월드 게임입니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="Horror">
+                <option value="">===공포 게임 여부를 선택하세요.===</option>
+                <option value="0">공포 게임이 아닙니다.</option>
+                <option value="1">공포 게임입니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="Violent">
+                <option value="">===게임에 잔인하거나 폭력적인 요소가 포함되어 있는지 선택하세요.===</option>
+                <option value="0">잔인하거나 폭력적인 요소가 포함되지 않있습니다.</option>
+                <option value="1">잔인하거나 폭력적인 요소가 포함되어 있습니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="Sexual">
+                <option value="">===게임에 선정적인 요소가 포함되어 있는지 선택하세요.===</option>
+                <option value="0">선정적인 요소가 포함되지 않있습니다.</option>
+                <option value="1">선정적인 요소가 포함되어 있습니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="Korean">
+                <option value="">===게임의 한국어 지원 여부를 선택하세요.===</option>
+                <option value="0">한국어를 지원하지 않습니다.</option>
+                <option value="1">한국어를 지원합니다.</option>
+            </select>
+            <br><br><br>
+
+            <select name="discount">
+                <option value="">===게임출시 이후 가격 변화 여부를 선택하세요.===</option>
+                <option value="0">게임 출시 이후에 가격을 인하하지 않을 예정입니다.</option>
+                <option value="1">게임 출시 이후에 가격을 인하할 예정입니다.</option>
+            </select>
+            <br><br><br>
+            
+            <p>지원 언어 수:<input type="text" value="지원 언어 수를 입력하세요" name="Num_Language"></p>
+            <br><br>
+
+            <select name="price_group">
+                <option value="">===출시할 게임의 가격을 선택하세요.===</option>
+                <option value="0">무료</option> 
+                <option value="1">0.899$ ~ 2.99$</option>
+                <option value="2">2.99$ ~ 5.99$</option>
+                <option value="3">5.99$ ~ 11.99$</option>
+                <option value="4">11.99$ ~ 199.99$</option>
+            </select>
+            <br><br>
+            <input type="submit" , value='predict!'>
+        </form>
+        </center>
+    </body>
+</html>

@@ -39,12 +39,6 @@ def get_page(page_url):
         return get_page(page_url)
 
 
-
-    
-
-
-
-
 def get_other_details(appid):
     search_url = f'{BASE_URL}/{appid}'
 
@@ -60,15 +54,22 @@ def get_other_details(appid):
     date = soup.find(class_='p-r-30')
     text = date.p.text
 
-
-    
-    try: 
-        release_date = text.split('Release date')[-1].split(':')[1].replace('Price', '').strip()
-        release_year = release_date.split(' ')[-1]
-        release_year = int(release_year)
+    release_date = text.split('Release date')[-1].split(':')[1]
+    if "Price" in release_date:
+        release_year = release_date.replace('Price', '').strip()
+        release_year = release_year.split(' ')[-1]
+    else:                                         # Price가 없는 경우
+        release_date_list = release_date.split(' ')
+        for element in release_date_list:
+            if  len(element) == 4:
+                release_year = element
+                break        # 값을 찾으면 빠져나온다
+            else: 
+                release_year = None   
+    try:
+        release_year = int(release_year)   # 값을 찾은경우
     except:
-        release_year = None
-
+        release_year = None               # 못찾은 경우
 
     
     try:
@@ -103,7 +104,6 @@ def get_other_details(appid):
         meta_score = None
 
     data = [[appid, release_year, Priece, user_score, meta_score]]
-    #data ={'appid':appid, 'release_year': release_year, 'Priece': Priece, 'user_score' : user_score, 'meta_score' : meta_score}
     return data
 
 def save_csv(dataframe,file_name):
@@ -117,17 +117,15 @@ df_app_list = pd.read_csv('app_list.csv')
 steam_appid = df_app_list['appid']
 game_name = df_app_list['name']
 
-
-for appid in steam_appid[1772:]:
+for appid in steam_appid[:]:
 
     temp_data = get_other_details(appid)
 
-
-    if appid == 252570:
+    if appid == 10:
         df = pd.DataFrame(temp_data, columns=['appid', 'release_year', 'Priece', 'user_score', 'meta_score'])
     else:
         temp_df = pd.DataFrame(temp_data, columns=['appid', 'release_year', 'Priece', 'user_score', 'meta_score'])
-        df = df.append(temp_df)
+        df = pd.concat([df,temp_df],axis=0, ignore_index=True, join='outer')
 
     print(df.tail(1))
     save_csv(df, 'steamspy_other_details.csv')

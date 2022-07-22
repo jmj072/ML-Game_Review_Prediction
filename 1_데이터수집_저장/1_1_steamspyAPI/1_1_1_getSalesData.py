@@ -4,7 +4,6 @@ import pandas as pd
 import json
 import requests
 import time
-from apscheduler.schedulers.background import BackgroundScheduler
 
 # The data is refreshed once a day, 
 # there is no reason to request the same information more than once every 24 hours.
@@ -67,12 +66,13 @@ def get_steamspy_data(page_num):
         }
 
         dict_data = get_request(url, requests_para)
+        dict_to_df = pd.DataFrame.from_dict(dict_data, orient='index')
         # streamspy data to Dataframe
         if i == 0:
-            df_steamspy = pd.DataFrame.from_dict(dict_data, orient='index')
+            df_steamspy = dict_to_df
         else:
-            df_steamspy = df_steamspy.append(pd.DataFrame.from_dict(dict_data, orient='index'))
-    save_csv(df_steamspy, 'steamspy.csv')
+            df_steamspy = pd.concat([df_steamspy, dict_to_df], ignore_index=True, axis=0, join='outer')
+            
 
     # generate sorted app_list from steamspy data
     df_app_list = df_steamspy[['appid', 'name']].sort_values('appid').reset_index(drop=True)
@@ -128,17 +128,17 @@ def steam_request(appid, name):
 
 
 
-get_steamspy_data(page_num=35) # Steamspy의 
+get_steamspy_data(page_num=50) # 5만개의 데이터 반환 요청(page 1개당 1천개 데이터)
 
 df_app_list = pd.read_csv('app_list.csv')
 steam_appid = df_app_list['appid']
 game_name = df_app_list['name']
 
 
-for appid in steam_appid[21445:]:
+for appid in steam_appid[:]:
     df = get_steamspy_details(appid)
 
-    if appid == 1244460:
+    if appid == 10:
         df_steamspy = df
     else:
         df_steamspy = pd.concat([df_steamspy,df], ignore_index=True, axis=0, join='outer')
@@ -148,39 +148,4 @@ for appid in steam_appid[21445:]:
     print(f"Done Data - appid : {appid} ")
     print(df_steamspy.tail(1))
     print("**" * 20)
-
-
-
-
-# #steam_columns = ['typ/e', 'name', 'steam_appid', 'required_age', 'is_free', 'controller_support',
-#     'dlc',  'fullgame', 'supported_languages', 'pc_requirements', 'mac_requirements',
-#     'linux_requirements', 'legal_notice', 'drm_notice', 'ext_user_account_notice',
-#     'developers', 'publishers', 'demos', 'price_overview', 'packages', 'package_groups',
-#     'platforms', 'metacritic', 'reviews', 'categories', 'genres', 
-#     'recommendations', 'achievements', 'release_date', 'content_descriptors']
-
-##
-# for i in range (len(df_app_list)):
-#     try:
-#         time.sleep(0.3)
-#         data = steam_request(steam_appid[i], game_name[i])
-
-#         if i == 0:
-#             df_steamdata = data
-#         else:
-#             df_steamdata = pd.concat([df_steamdata,data], ignore_index=True, axis=0, join='outer')
-
-#         print(f"Data - steam ID : {steam_appid[i]}, Game Name : {game_name[i]}") 
-#         print(df_steamdata.tail(1))
-#         print("-"*30)
-
-#     except:
-#         data = None
-#         pass
-
-
-# save_csv(df_steamdata, 'steam.csv')
-
-#df_steam = pd.read_csv('steam.csv')
-#print(df_steam.T.head())
 
