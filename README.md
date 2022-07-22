@@ -79,7 +79,7 @@
 <br>
 
 ## Pipeline
-<img src="https://user-images.githubusercontent.com/77204538/179452995-181b43d9-56d4-4b9a-af1d-c0d54fae478b.png">
+<img src="https://user-images.githubusercontent.com/77204538/180379973-718fb100-2de3-4875-8f42-3f2a89aadbaa.png">
 
 <br>
 
