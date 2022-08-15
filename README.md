@@ -594,7 +594,7 @@ KNN, Gradient Boostiong, AdaBoosting, XGBoost, LightGBM, 총 11개의 모델의 
 
 	<img src="https://user-images.githubusercontent.com/77204538/179787850-d4a402ad-a031-4718-97f6-6b24ded072d5.png">
 
-  - True Positive와 False Negative를 동시에 고려하며, Multiclass와 Class간의 불균형을 고려할 수 있는 `roc_auc_over_weighted socre` 를 평가지표로 선택함   
+  - True Positive와 False Negative를 동시에 고려하며, Multiclass와 Class간의 불균형을 고려할 수 있는 `roc_auc_ovr_weighted socre` 를 평가지표로 선택함   
   (OvR : One versus the rest)
   - `StratifiedKFold`를 사용하여 모든 class의 데이터를 훈련할 수 있도록 하였음
   - Gradient Boost(AUC score=0.673), XGBoost(AUC score=0.672), LightGBM(AUC score=0.674) 모델이 가장 성능이 좋았음
@@ -607,7 +607,7 @@ KNN, Gradient Boostiong, AdaBoosting, XGBoost, LightGBM, 총 11개의 모델의 
 ### 3.2 Hyperparameter tuning
 - **GridSearchCV**로 최적화를 진행함
 - Tuning 시에는 `StratifiedKFold`를 이용하여 훈련 데이터셋에 모든 class가 균등하게 포함될 수 있도록 교차검증하였음
-- 평가지표는 `roc_auc_over_weighted socre`를 이용함
+- 평가지표는 `roc_auc_ovr_weighted socre`를 이용함
 
 	| 평가지표 		 | Tuning 후 (Voting Classifier) | Tuning 후 (LightGBM)	|
 	|:--------:		|:---------:|:---------:|
